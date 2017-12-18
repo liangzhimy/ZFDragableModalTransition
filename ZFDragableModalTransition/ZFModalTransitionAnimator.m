@@ -134,24 +134,19 @@
             [fromViewController beginAppearanceTransition:NO animated:YES];
         }
 
-        [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                              delay:0
-             usingSpringWithDamping:0.8
-              initialSpringVelocity:0.1
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             fromViewController.view.transform = CGAffineTransformScale(fromViewController.view.transform, self.behindViewScale, self.behindViewScale);
-                             fromViewController.view.alpha = self.behindViewAlpha;
-
-                             toViewController.view.frame = CGRectMake(0,0,
-                                                                      CGRectGetWidth(toViewController.view.frame),
-                                                                      CGRectGetHeight(toViewController.view.frame));
-                         } completion:^(BOOL finished) {
-                             if (toViewController.modalPresentationStyle == UIModalPresentationCustom) {
-                                 [fromViewController endAppearanceTransition];
-                             }
-                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-                         }];
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            fromViewController.view.transform = CGAffineTransformScale(fromViewController.view.transform, self.behindViewScale, self.behindViewScale);
+            fromViewController.view.alpha = self.behindViewAlpha;
+            
+            toViewController.view.frame = CGRectMake(0,0,
+                                                     CGRectGetWidth(toViewController.view.frame),
+                                                     CGRectGetHeight(toViewController.view.frame));
+        } completion:^(BOOL finished) {
+            if (toViewController.modalPresentationStyle == UIModalPresentationCustom) {
+                [fromViewController endAppearanceTransition];
+            }
+            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        }];
     } else {
 
         if (fromViewController.modalPresentationStyle == UIModalPresentationFullScreen) {
