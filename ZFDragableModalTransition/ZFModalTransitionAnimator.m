@@ -339,7 +339,13 @@
 
     CGPoint transformedPoint = CGPointApplyAffineTransform(updateRect.origin, fromViewController.view.transform);
     updateRect = CGRectMake(transformedPoint.x, transformedPoint.y, updateRect.size.width, updateRect.size.height);
-
+    
+    if (self.interactiveBehindViewShadowColor) {
+        fromViewController.view.layer.shadowColor = self.interactiveBehindViewShadowColor.CGColor;
+        fromViewController.view.layer.shadowOffset = self.interactiveBehindViewShadowOffset;
+        fromViewController.view.layer.shadowRadius = self.interactiveBehindViewShadowRadius;
+        fromViewController.view.layer.shadowOpacity = self.interactiveBehindViewShadowOpacity;
+    }
     fromViewController.view.frame = updateRect;
 }
 

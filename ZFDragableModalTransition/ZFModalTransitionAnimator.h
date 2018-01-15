@@ -29,6 +29,10 @@ typedef NS_ENUM(NSUInteger, ZFModalTransitonDirection) {
 @property CGFloat behindViewScale;
 @property CGFloat behindViewAlpha;
 @property CGFloat transitionDuration;
+@property (strong, nonatomic) UIColor *interactiveBehindViewShadowColor;
+@property (assign, nonatomic) CGSize interactiveBehindViewShadowOffset;
+@property (assign, nonatomic) CGFloat interactiveBehindViewShadowRadius;
+@property (assign, nonatomic) CGFloat interactiveBehindViewShadowOpacity;
 
 - (id)initWithModalViewController:(UIViewController *)modalViewController;
 - (void)setContentScrollView:(UIScrollView *)scrollView;
